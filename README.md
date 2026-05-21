@@ -39,24 +39,14 @@ Workflow ID: `wazuh-fine-tuning-pipeline`
 - AI provider API key (OpenAI, OpenRouter, or Anthropic)
 - Web-search provider API key used by your configured web context agent
 
-## Environment Configuration
+## Runtime Configuration
 
-1. `.env` is optional. Create it only if you want to override defaults:
-
-```bash
-cp example.env .env
-```
-
-2. Optional infrastructure overrides in `.env`:
-- `DB_USER`, `DB_PASS`, `DB_DATABASE`
-- `APP_DB_SCHEMA`
-- `FRONTEND_PORT`
-- `AGENT_WORKFLOW_ID`
-
-3. Runtime credentials are user-scoped and persisted by the app flow in PostgreSQL:
+Runtime credentials are user-scoped and persisted by the app flow in PostgreSQL:
 - SIEM indexer host/user/password
 - Wazuh manager SSH host/user/port and auth material
 - AI and web provider selection, model, and API keys
+
+Compose defaults are already defined for infrastructure values (`DB_*`, schema, and ports), so a `.env` file is only needed if you want custom overrides.
 
 ## Run Locally (Docker Compose)
 

@@ -1,0 +1,13 @@
+chat:
+  quick_prompts:
+    ossecrules-agent:
+      - "Find Wazuh rule XML for rule ID 5710"
+      - "Show the exact XML block for rule ID 60103"
+    threathunting-agent:
+      - "Analyze SIEM behavior for rule ID 5710"
+      - "Show top source hosts triggering rule ID 60103"
+    websearch-agent:
+      - "Find external context for Windows invalid login events"
+      - "Search intel for behavior behind rule ID 60103"
+    reporting-agent:
+      - "Create final tuning report for rule ID 5710"

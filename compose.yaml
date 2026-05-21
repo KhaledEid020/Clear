@@ -1,0 +1,99 @@
+services:
+  agentos-db:
+    image: agnohq/pgvector:18
+    container_name: clear-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER:-ai}
+      POSTGRES_PASSWORD: ${DB_PASS:-ai}
+      POSTGRES_DB: ${DB_DATABASE:-ai}
+    volumes:
+      - pgdata:/var/lib/postgresql
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-ai} -d ${DB_DATABASE:-ai}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks:
+      - agentos
+
+  agentos-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${IMAGE_NAME:-agno-agentos}:${IMAGE_TAG:-latest}
+    container_name: clear-api
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      # Hot-reload: mount source code
+      - .:/app
+      - ./secrets:/app/secrets:ro
+    environment:
+      - RUNTIME_ENV=dev
+      - AGNO_DEBUG=True
+      - PYTHONPATH=/app
+      # Database
+      - DB_HOST=agentos-db
+      - DB_PORT=5432
+      - DB_USER=${DB_USER:-ai}
+      - DB_PASS=${DB_PASS:-ai}
+      - DB_DATABASE=${DB_DATABASE:-ai}
+      - WAIT_FOR_DB=True
+      - PRINT_ENV_ON_LOAD=True
+      # Runtime user/provider/SIEM credentials are loaded from DB per workflow user.
+      # Do not inject .env model/API/SSH settings here; that can mask missing DB config.
+      - LLM_MAX_TOKENS=${LLM_MAX_TOKENS:-4096}
+      - OPENSEARCH_MCP_COMMAND=${OPENSEARCH_MCP_COMMAND:-opensearch-mcp-server}
+      - VERIFY_CERTS=${VERIFY_CERTS:-false}
+    depends_on:
+      agentos-db:
+        condition: service_healthy
+    networks:
+      - agentos
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: clear-frontend
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT:-3000}:3000"
+    environment:
+      - PORT=3000
+      - DB_HOST=agentos-db
+      - DB_PORT=5432
+      - DB_USER=${DB_USER:-ai}
+      - DB_PASS=${DB_PASS:-ai}
+      - DB_DATABASE=${DB_DATABASE:-ai}
+      - APP_DB_SCHEMA=${APP_DB_SCHEMA:-ai}
+      - AGENT_BACKEND_URL=http://agentos-api:8000
+      - AGENT_WORKFLOW_ID=${AGENT_WORKFLOW_ID:-wazuh-fine-tuning-pipeline}
+      - OPENSEARCH_HOSTS=${OPENSEARCH_HOSTS:-}
+      - OPENSEARCH_USERNAME=${OPENSEARCH_USERNAME:-}
+      - OPENSEARCH_PASSWORD=${OPENSEARCH_PASSWORD:-}
+      - VERIFY_CERTS=${VERIFY_CERTS:-false}
+      - OPENSEARCH_INDEX=${OPENSEARCH_INDEX:-wazuh-alerts-4.x-*}
+      - WAZUH_TOP_RULES_SIZE=${WAZUH_TOP_RULES_SIZE:-10}
+      - WAZUH_TOP_RULES_LOOKBACK=${WAZUH_TOP_RULES_LOOKBACK:-24h}
+      - WAZUH_TOP_RULES_TIME_FIELD=${WAZUH_TOP_RULES_TIME_FIELD:-timestamp}
+    depends_on:
+      agentos-db:
+        condition: service_healthy
+      agentos-api:
+        condition: service_started
+    networks:
+      - agentos
+
+networks:
+  agentos:
+
+volumes:
+  pgdata:

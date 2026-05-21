@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CleanICon Console</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="side-nav">
+        <button id="side-expand-btn" class="side-collapsed-brand" type="button" aria-label="Expand sidebar">
+          <img src="/cleanicon-mark.png" alt="" class="side-collapsed-brand-icon" />
+          <span class="material-symbols-outlined side-collapsed-brand-arrow">chevron_right</span>
+        </button>
+        <div class="side-head">
+          <div class="side-head-brand-row">
+            <img src="/cleanicon-logo.png" alt="Clean" class="side-head-logo" />
+            <button id="side-collapse-btn" class="side-collapse-btn" type="button" aria-label="Collapse sidebar">
+              <span id="side-collapse-icon" class="material-symbols-outlined">chevron_left</span>
+            </button>
+          </div>
+        </div>
+        <nav class="side-links">
+          <span class="side-link disabled" aria-disabled="true">
+            <span class="material-symbols-outlined">grid_view</span>
+            <span class="side-link-label-wrap">
+              <span class="side-link-label">Dashboard</span>
+              <span class="soon-badge">Soon</span>
+            </span>
+          </span>
+          <span class="side-link disabled" aria-disabled="true">
+            <span class="material-symbols-outlined">rule</span>
+            <span class="side-link-label-wrap">
+              <span class="side-link-label">Rule Library</span>
+              <span class="soon-badge">Soon</span>
+            </span>
+          </span>
+          <a href="#" class="side-link active" aria-current="page">
+            <span class="material-symbols-outlined">tune</span>
+            <span class="side-link-label">Fine Tuning</span>
+          </a>
+          <span class="side-link disabled" aria-disabled="true">
+            <span class="material-symbols-outlined">analytics</span>
+            <span class="side-link-label-wrap">
+              <span class="side-link-label">Activity Log</span>
+              <span class="soon-badge">Soon</span>
+            </span>
+          </span>
+        </nav>
+        <div class="side-bottom">
+          <p class="side-bottom-version">v 0.1.0</p>
+          <div class="side-bottom-tools">
+            <button id="side-avatar-btn" class="side-bottom-avatar side-bottom-avatar-btn" type="button" title="Upload photo">
+              <img id="side-avatar-image" class="side-bottom-avatar-image hidden" alt="Profile" />
+              <span id="side-avatar-initial">A</span>
+            </button>
+            <input id="side-avatar-input" class="side-avatar-input" type="file" accept="image/*" />
+            <div class="side-user-meta">
+              <p id="side-user-name" class="side-user-name">Analyst</p>
+              <p id="side-user-title" class="side-user-title">Security Analyst</p>
+            </div>
+            <button id="side-settings-btn" class="side-settings-btn" type="button" title="Settings">
+              <span class="material-symbols-outlined">settings</span>
+            </button>
+            <button id="side-signout-btn" class="side-signout-btn" type="button" title="Sign out">
+              <span class="material-symbols-outlined">logout</span>
+              <span class="side-signout-label">Sign out</span>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <div class="layout">
+        <section class="panel left-panel">
+          <div class="panel-head">
+            <div>
+              <h1>SIEM Rules</h1>
+              <p>Manage and refine system logic patterns.</p>
+            </div>
+          </div>
+
+          <div class="rules-table">
+            <div class="rules-header">
+              <span>Rule Name</span>
+              <span>Rule ID</span>
+            </div>
+            <div id="rules-list" class="rules-list"></div>
+          </div>
+          <div id="rules-empty-message" class="rules-empty-message hidden"></div>
+
+          <div class="manual-rule-box">
+            <p class="manual-rule-title">Or enter Rule ID manually</p>
+            <div class="manual-rule-row">
+              <input
+                id="manual-rule-id"
+                class="manual-rule-input"
+                type="text"
+                placeholder="Example: 30304"
+                autocomplete="off"
+              />
+              <button id="manual-rule-apply" class="manual-rule-btn" type="button">Use</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel right-panel">
+          <div class="rule-details">
+            <div class="chips-row">
+              <span id="rule-id-chip" class="chip">RUL-4921</span>
+            </div>
+
+            <h2 id="rule-name">Transaction Validation Threshold</h2>
+            <button id="fine-tune-btn" class="fine-tune-btn">
+              <img src="/cleanicon-mark.png" alt="" class="fine-tune-icon" />
+              <strong>Finetune now</strong>
+            </button>
+
+            <p id="fine-tune-status" class="fine-tune-status"></p>
+          </div>
+
+          <div id="agent-block" class="agent-block hidden">
+            <div class="agent-head">
+              <div>
+                <p id="agent-subtitle" class="agent-subtitle">Preparing orchestration pipeline...</p>
+              </div>
+            </div>
+
+            <div id="activity-list" class="activity-list"></div>
+            <div id="report-box" class="report-box hidden"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <div id="report-modal" class="report-modal hidden" aria-hidden="true">
+      <div class="report-window" role="dialog" aria-modal="true" aria-label="Final report window">
+        <div class="report-window-bar">
+          <div class="report-window-controls" aria-hidden="true">
+            <span class="mac-dot red"></span>
+            <span class="mac-dot yellow"></span>
+            <span class="mac-dot green"></span>
+          </div>
+          <div class="report-window-title">Final Report.md</div>
+          <button
+            id="report-window-download"
+            class="report-window-download"
+            type="button"
+            aria-label="Download report as markdown"
+            title="Download as .md"
+          >
+            <span class="material-symbols-outlined">download</span>
+            Download .md
+          </button>
+          <button id="report-window-close" class="report-window-close" type="button" aria-label="Close report">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <div id="report-window-body" class="report-window-body"></div>
+        <div id="report-window-footer" class="report-window-footer hidden">
+          <div id="report-window-gate-message" class="report-window-gate-message"></div>
+          <div class="report-window-gate-actions">
+            <button id="report-window-approve" class="hitl-btn approve" type="button">Approve</button>
+            <button id="report-window-reject" class="hitl-btn reject" type="button">Deny</button>
+          </div>
+          <div id="report-window-input-wrap" class="report-window-input-wrap hidden">
+            <input
+              id="report-window-input-text"
+              class="report-window-input-text"
+              type="text"
+              placeholder="Enter recommendation numbers or label (example: 1,3 or Recommendation A)"
+              autocomplete="off"
+            />
+            <button id="report-window-submit-input" class="hitl-btn approve" type="button">Apply</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="settings-modal" class="settings-modal hidden" aria-hidden="true">
+      <div class="settings-window" role="dialog" aria-modal="true" aria-label="User settings">
+        <div class="settings-window-head">
+          <h3>User Settings</h3>
+          <button id="settings-close-btn" class="settings-close-btn" type="button" aria-label="Close settings">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <p class="settings-window-subtitle">Update your providers and SIEM configuration. Changes are saved to your profile DB.</p>
+
+        <div class="settings-grid">
+          <section class="settings-card">
+            <h4>AI Provider</h4>
+            <label for="settings-ai-provider">Provider</label>
+            <select id="settings-ai-provider">
+              <option value="openai">OpenAI</option>
+              <option value="anthropic">Anthropic</option>
+              <option value="openrouter">OpenRouter</option>
+            </select>
+
+            <label for="settings-ai-key">API Key</label>
+            <input id="settings-ai-key" type="password" placeholder="Enter API key" />
+
+            <div class="settings-inline-head">
+              <label for="settings-ai-model">Model</label>
+              <button id="settings-load-models-btn" class="settings-small-btn" type="button">Load Models</button>
+            </div>
+            <select id="settings-ai-model">
+              <option value="">Enter API key to load models</option>
+            </select>
+            <p id="settings-ai-model-hint" class="settings-hint">Model list will be fetched from selected provider.</p>
+          </section>
+
+          <section class="settings-card">
+            <h4>Web Provider</h4>
+            <label for="settings-web-provider">Provider</label>
+            <select id="settings-web-provider">
+              <option value="tavily">Tavily</option>
+            </select>
+
+            <label for="settings-web-key">API Key</label>
+            <input id="settings-web-key" type="password" placeholder="Enter web provider key" />
+          </section>
+
+          <section class="settings-card">
+            <h4>SIEM Provider</h4>
+            <div class="settings-subcard">
+              <h5>Provider</h5>
+              <label for="settings-siem-provider">Provider</label>
+              <select id="settings-siem-provider">
+                <option value="wazuh">Wazuh</option>
+              </select>
+            </div>
+
+            <div class="settings-subcard">
+              <h5>Indexer Config</h5>
+              <label for="settings-indexer-url">Indexer URL</label>
+              <input id="settings-indexer-url" type="text" placeholder="https://indexer.example.com:9200" />
+
+              <label for="settings-indexer-user">Indexer User</label>
+              <input id="settings-indexer-user" type="text" placeholder="admin" />
+
+              <label for="settings-indexer-pass">Indexer Password</label>
+              <input id="settings-indexer-pass" type="password" placeholder="********" />
+              <div class="settings-test-row">
+                <button id="settings-test-indexer-btn" class="settings-test-btn" type="button">Test Indexer</button>
+                <span id="settings-indexer-test-status" class="settings-hint"></span>
+              </div>
+            </div>
+
+            <div class="settings-subcard">
+              <h5>Manager Config</h5>
+              <label for="settings-manager-url">Manager URL/IP</label>
+              <input id="settings-manager-url" type="text" placeholder="10.0.0.10" />
+
+              <div class="settings-row-2">
+                <div>
+                  <label for="settings-ssh-user">SSH User</label>
+                  <input id="settings-ssh-user" type="text" placeholder="wazuh" />
+                </div>
+                <div>
+                  <label for="settings-ssh-port">SSH Port</label>
+                  <input id="settings-ssh-port" type="number" min="1" value="22" />
+                </div>
+              </div>
+
+              <label for="settings-ssh-auth-mode">SSH Authentication Mode</label>
+              <select id="settings-ssh-auth-mode">
+                <option value="password">Password</option>
+                <option value="key_file">Private Key</option>
+              </select>
+
+              <div id="settings-ssh-password-wrap">
+                <label for="settings-ssh-auth">SSH Password</label>
+                <input id="settings-ssh-auth" type="password" placeholder="Enter SSH password" />
+              </div>
+
+              <div id="settings-ssh-key-wrap" class="hidden">
+                <label for="settings-ssh-key-text">SSH Private Key</label>
+                <div class="settings-auth-row">
+                  <textarea id="settings-ssh-key-text" rows="6" placeholder="-----BEGIN OPENSSH PRIVATE KEY-----"></textarea>
+                  <button id="settings-ssh-import-btn" class="settings-small-btn" type="button">Import .key</button>
+                </div>
+              </div>
+              <input id="settings-ssh-key-file" type="file" accept=".key,.pem,text/plain" class="hidden" />
+              <p id="settings-ssh-mode-hint" class="settings-hint">Auth mode: password</p>
+              <div class="settings-test-row">
+                <button id="settings-test-manager-btn" class="settings-test-btn" type="button">Test Manager</button>
+                <span id="settings-manager-test-status" class="settings-hint"></span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <p id="settings-status" class="settings-status"></p>
+
+        <div class="settings-actions">
+          <button id="settings-cancel-btn" class="settings-cancel-btn" type="button">Cancel</button>
+          <button id="settings-save-btn" class="settings-save-btn" type="button">Save Changes</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

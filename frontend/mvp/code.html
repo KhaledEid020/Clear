@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CleanICon Console - Rule Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e8e8ea",
+                        "on-surface": "#1a1c1d",
+                        "primary": "#030304",
+                        "tertiary-fixed": "#e3e2e7",
+                        "surface-container-low": "#f3f3f5",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#1b1b1d",
+                        "outline": "#77767b",
+                        "on-primary-container": "#868587",
+                        "on-surface-variant": "#46464a",
+                        "surface-container-highest": "#e2e2e4",
+                        "on-secondary-fixed-variant": "#00458f",
+                        "tertiary": "#020305",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#85858a",
+                        "on-secondary-container": "#fefcff",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#f9f9fb",
+                        "on-primary-fixed-variant": "#474649",
+                        "surface-variant": "#e2e2e4",
+                        "surface": "#f9f9fb",
+                        "secondary-container": "#0372e4",
+                        "secondary-fixed": "#d7e2ff",
+                        "on-background": "#1a1c1d",
+                        "surface-tint": "#5f5e60",
+                        "primary-fixed-dim": "#c8c6c8",
+                        "on-secondary-fixed": "#001b3f",
+                        "on-tertiary-fixed": "#1a1b1f",
+                        "primary-fixed": "#e4e2e4",
+                        "tertiary-container": "#1c1d21",
+                        "primary-container": "#1d1d1f",
+                        "outline-variant": "#c7c6ca",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#eeeef0",
+                        "surface-dim": "#d9dadc",
+                        "secondary-fixed-dim": "#abc7ff",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#46464b",
+                        "error-container": "#ffdad6",
+                        "secondary": "#005ab7",
+                        "background": "#f9f9fb",
+                        "inverse-surface": "#2f3132",
+                        "tertiary-fixed-dim": "#c7c6cb",
+                        "inverse-on-surface": "#f0f0f2",
+                        "inverse-primary": "#c8c6c8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "40px",
+                        "md": "24px",
+                        "margin": "max(24px, 5vw)",
+                        "base": "8px",
+                        "xl": "64px",
+                        "gutter": "20px",
+                        "sm": "12px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "caption": ["Inter"],
+                        "display": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["17px", {"lineHeight": "1.5", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["13px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+                        "body-md": ["15px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "400"}],
+                        "display": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col antialiased">
+<!-- TopNavBar -->
+<header class="bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md fixed top-0 w-full z-50 border-b border-zinc-200 dark:border-zinc-800 shadow-[0_4px_20px_0_rgba(0,0,0,0.04)] flex justify-between items-center h-16 px-6 w-full">
+<div class="flex items-center gap-md">
+<img alt="CleanICon" class="h-9 w-auto" src="/cleanicon-logo.png"/>
+</div>
+<div class="flex-1 flex justify-end items-center gap-md">
+<!-- Search on right -->
+<div class="relative max-w-sm hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant text-[18px]">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-full py-2 pl-10 pr-4 font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="Search rules..." type="text"/>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-2 text-zinc-500 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors duration-200 rounded-full active:scale-[0.98]">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-zinc-500 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors duration-200 rounded-full active:scale-[0.98]">
+<span class="material-symbols-outlined text-[20px]" data-icon="help">help</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant ml-2">
+<img alt="Administrator profile" class="w-full h-full object-cover" data-alt="professional headshot of an administrator in soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDv64L6x9lCpASZWBcU0AauZYfDP36fD5GuZpJlG3at3-plc61cOJu5twjPd8q9Qbg5TW40ihScriy72qLrJs6DliiZzmV0uEHEqKHbwVxXowzclG3SWHxJB8BlkDo51F73LeDHmbAQzHcVVFB__No1ZBfoebMabFVLUdgkg_LSflrBcOCqkEd2zxj6DQLrlYzmUDCwYJcDaL6QGh6bmEWuNYxLO4n2xBvsxpZ5mi6CuN1KKHlMWy8F1NpuyVRQ4VFSTTJuV1m8Ryk"/>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="hidden md:flex bg-white dark:bg-zinc-950 fixed left-0 top-16 h-[calc(100vh-64px)] w-64 border-r border-zinc-200 dark:border-zinc-800 flex-col p-4 gap-2 z-40">
+<div class="mb-lg px-2 pt-2">
+<h2 class="font-headline-md text-on-surface mb-1">System Agent</h2>
+<p class="font-caption text-outline">V2.4 Active</p>
+</div>
+<nav class="flex-1 flex flex-col gap-xs font-['Inter'] text-[13px] font-medium text-zinc-900 dark:text-zinc-50">
+<a class="flex items-center gap-sm px-3 py-2 rounded-lg text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-900/50 hover:text-zinc-900 dark:hover:text-zinc-50 transition-all scale-100 active:scale-[0.99]" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="grid_view">grid_view</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-sm px-3 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 scale-100 active:scale-[0.99]" href="#">
+<span class="material-symbols-outlined fill-icon text-[18px]" data-icon="rule">rule</span>
+                Rule Library
+            </a>
+<a class="flex items-center gap-sm px-3 py-2 rounded-lg text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-900/50 hover:text-zinc-900 dark:hover:text-zinc-50 transition-all scale-100 active:scale-[0.99]" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="tune">tune</span>
+                Fine Tuning
+            </a>
+<a class="flex items-center gap-sm px-3 py-2 rounded-lg text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-900/50 hover:text-zinc-900 dark:hover:text-zinc-50 transition-all scale-100 active:scale-[0.99]" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="pulse_alert">pulse_alert</span>
+                Activity Log
+            </a>
+</nav>
+<div class="mt-auto flex flex-col gap-sm">
+<a class="flex items-center gap-sm px-3 py-2 rounded-lg text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-900/50 hover:text-zinc-900 dark:hover:text-zinc-50 transition-all font-['Inter'] text-[13px] font-medium scale-100 active:scale-[0.99]" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="settings">settings</span>
+                Settings
+            </a>
+<button class="w-full bg-primary text-on-primary py-2 px-4 rounded-lg font-label-md transition-opacity hover:opacity-90">
+                Deploy Changes
+            </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 pt-16 flex flex-col md:flex-row min-h-screen">
+<!-- Left Panel: Rule List Table -->
+<div class="flex-1 md:w-1/2 p-margin border-r border-outline-variant/30 flex flex-col bg-surface">
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h1 class="font-headline-lg text-on-surface mb-xs">Rules</h1>
+<p class="font-body-md text-on-surface-variant">Manage and refine system logic patterns.</p>
+</div>
+<div class="flex gap-sm">
+<button class="p-2 border border-outline-variant rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+</button>
+</div>
+</div>
+<div class="flex-1 bg-surface-container-lowest border border-outline-variant/50 rounded-xl overflow-hidden flex flex-col">
+<!-- Table Header -->
+<div class="grid grid-cols-[1fr_auto] gap-sm px-md py-sm border-b border-outline-variant/30 bg-surface-container-low/50 font-label-md text-on-surface-variant">
+<div>Rule Name</div>
+<div class="w-10 text-center">Action</div>
+</div>
+<!-- Table Body -->
+<div class="flex-1 overflow-y-auto">
+<!-- Row 1 (Selected) -->
+<div class="grid grid-cols-[1fr_auto] gap-sm px-md py-sm items-center border-b border-outline-variant/20 bg-surface-container cursor-pointer transition-colors group">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+<div>
+<div class="font-body-md text-on-surface font-medium">Transaction Validation Threshold</div>
+<div class="font-caption text-on-surface-variant">ID: RUL-4921</div>
+</div>
+</div>
+<button class="h-8 w-8 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-[1fr_auto] gap-sm px-md py-sm items-center border-b border-outline-variant/20 hover:bg-surface-container-low cursor-pointer transition-colors group">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline text-[18px]">rule</span>
+<div>
+<div class="font-body-md text-on-surface">User Authentication Timeout</div>
+<div class="font-caption text-on-surface-variant">ID: RUL-8832</div>
+</div>
+</div>
+<button class="h-8 w-8 rounded-full border border-outline-variant text-on-surface flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+<!-- Row 3 -->
+<div class="grid grid-cols-[1fr_auto] gap-sm px-md py-sm items-center border-b border-outline-variant/20 hover:bg-surface-container-low cursor-pointer transition-colors group">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-error text-[18px]">warning</span>
+<div>
+<div class="font-body-md text-on-surface">Data Sync Conflict Resolution</div>
+<div class="font-caption text-on-surface-variant">ID: RUL-1045</div>
+</div>
+</div>
+<button class="h-8 w-8 rounded-full border border-outline-variant text-on-surface flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+<!-- Row 4 -->
+<div class="grid grid-cols-[1fr_auto] gap-sm px-md py-sm items-center border-b border-outline-variant/20 hover:bg-surface-container-low cursor-pointer transition-colors group">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline text-[18px]">rule</span>
+<div>
+<div class="font-body-md text-on-surface">API Rate Limiting Tier 2</div>
+<div class="font-caption text-on-surface-variant">ID: RUL-3390</div>
+</div>
+</div>
+<button class="h-8 w-8 rounded-full border border-outline-variant text-on-surface flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Panel: Detail View -->
+<div class="flex-1 md:w-1/2 p-margin bg-surface-container-lowest flex flex-col">
+<div class="mb-xl max-w-2xl">
+<div class="flex items-center gap-sm mb-xs">
+<span class="px-2 py-1 bg-surface-container text-on-surface-variant rounded-md font-caption font-medium tracking-wider">RUL-4921</span>
+<span class="px-2 py-1 bg-secondary-fixed text-on-secondary-fixed rounded-md font-caption font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Active
+                    </span>
+</div>
+<h2 class="font-headline-lg text-on-surface mb-md leading-tight">Transaction Validation Threshold</h2>
+<p class="font-body-lg text-on-surface-variant mb-lg border-l-2 border-outline-variant pl-4">
+                    Determines the risk score required to flag a transaction for manual review. Currently set to baseline heuristics with a 0.85 confidence threshold.
+                </p>
+<button class="bg-primary text-on-primary px-[20px] py-[10px] rounded-lg font-label-md flex items-center gap-sm hover:opacity-90 transition-opacity w-fit shadow-[0_4px_20px_0_rgba(0,0,0,0.04)]">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+                    Fine Tune Now
+                </button>
+</div>
+<!-- Agent Activity Bento Section -->
+<div class="flex-1 mt-md">
+<h3 class="font-label-md text-on-surface-variant mb-sm uppercase tracking-wider">Agent Activity</h3>
+<div class="border border-outline-variant/30 rounded-xl bg-surface-bright p-md h-full min-h-[300px] flex flex-col gap-md relative overflow-hidden shadow-[inset_0_2px_10px_0_rgba(0,0,0,0.02)]">
+<!-- Decorative background element -->
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-secondary-fixed-dim rounded-full blur-[80px] opacity-20 pointer-events-none"></div>
+<!-- Activity Log Items -->
+<div class="flex flex-col gap-md z-10 relative">
+<!-- Item 1: Complete -->
+<div class="flex gap-md items-start">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center shrink-0 border border-outline-variant/50">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">database</span>
+</div>
+<div class="flex-1 pt-1">
+<div class="font-label-md text-on-surface mb-1">Searching historical patterns...</div>
+<div class="font-caption text-on-surface-variant">Analyzed 1.2M transactions from past 30 days.</div>
+</div>
+</div>
+<!-- Item 2: Complete -->
+<div class="flex gap-md items-start">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center shrink-0 border border-outline-variant/50">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">analytics</span>
+</div>
+<div class="flex-1 pt-1">
+<div class="font-label-md text-on-surface mb-1">Analyzing edge cases...</div>
+<div class="font-caption text-on-surface-variant">Identified 3 potential false-positive clusters near the 0.82 boundary.</div>
+</div>
+</div>
+<!-- Item 3: Active -->
+<div class="flex gap-md items-start">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0 shadow-[0_4px_20px_0_rgba(3,114,228,0.2)]">
+<span class="material-symbols-outlined text-[16px] animate-spin">sync</span>
+</div>
+<div class="flex-1 pt-1 bg-surface-container-lowest border border-outline-variant/30 p-sm rounded-lg shadow-sm">
+<div class="font-label-md text-on-surface mb-2 flex items-center gap-2">
+                                    Simulating adjusted thresholds
+                                    <span class="flex gap-1">
+<span class="w-1 h-1 bg-on-surface-variant rounded-full animate-bounce" style="animation-delay: 0s"></span>
+<span class="w-1 h-1 bg-on-surface-variant rounded-full animate-bounce" style="animation-delay: 0.2s"></span>
+<span class="w-1 h-1 bg-on-surface-variant rounded-full animate-bounce" style="animation-delay: 0.4s"></span>
+</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-secondary h-1.5 rounded-full" style="width: 65%"></div>
+</div>
+<div class="flex justify-between mt-2 font-caption text-outline">
+<span>Running validation subset A</span>
+<span>65%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

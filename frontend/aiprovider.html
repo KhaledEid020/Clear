@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Clear - AI Provider</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed": "#00201a",
+                      "secondary-fixed-dim": "#c5c6cc",
+                      "primary-container": "#00f5d4",
+                      "on-tertiary-fixed": "#0b1c30",
+                      "inverse-surface": "#2f3131",
+                      "inverse-primary": "#00dfc1",
+                      "on-primary-container": "#006c5c",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed-dim": "#b7c8e1",
+                      "surface-container-low": "#f3f3f3",
+                      "surface-bright": "#f9f9f9",
+                      "tertiary-container": "#cbdbf5",
+                      "secondary": "#5c5e63",
+                      "inverse-on-surface": "#f0f1f1",
+                      "surface-variant": "#e2e2e2",
+                      "on-secondary-fixed": "#191c20",
+                      "tertiary-fixed": "#d3e4fe",
+                      "surface-container-highest": "#e2e2e2",
+                      "surface-dim": "#dadada",
+                      "error": "#ba1a1a",
+                      "surface-container-high": "#e8e8e8",
+                      "on-secondary-container": "#626469",
+                      "on-error-container": "#93000a",
+                      "surface-tint": "#006b5b",
+                      "surface-container": "#eeeeee",
+                      "on-secondary-fixed-variant": "#44474b",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "tertiary": "#505f76",
+                      "secondary-container": "#e1e2e8",
+                      "on-tertiary": "#ffffff",
+                      "background": "#f9f9f9",
+                      "on-background": "#1a1c1c",
+                      "primary-fixed": "#26fedc",
+                      "on-surface-variant": "#3a4a46",
+                      "primary-fixed-dim": "#00dfc1",
+                      "surface": "#f9f9f9",
+                      "secondary-fixed": "#e1e2e8",
+                      "primary": "#006b5b",
+                      "on-primary-fixed-variant": "#005144",
+                      "on-tertiary-fixed-variant": "#38485d",
+                      "outline-variant": "#b9cac4",
+                      "error-container": "#ffdad6",
+                      "outline": "#6a7b76",
+                      "on-surface": "#1a1c1c",
+                      "on-tertiary-container": "#506076"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "xs": "4px",
+                      "margin-desktop": "32px",
+                      "sm": "12px",
+                      "base": "8px",
+                      "md": "24px",
+                      "xl": "64px",
+                      "margin-mobile": "16px",
+                      "gutter": "24px",
+                      "lg": "40px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "label-code": [
+                              "JetBrains Mono"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-code": [
+                              "12px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-caps": [
+                              "11px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "0.08em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col items-center justify-center overflow-x-hidden overflow-y-auto antialiased selection:bg-primary-container selection:text-on-primary-fixed">
+<main class="w-full max-w-[800px] px-margin-mobile md:px-margin-desktop py-lg md:py-xl flex flex-col items-center">
+<!-- Header Section -->
+<div class="flex flex-col items-center text-center mb-lg">
+<img alt="Clear Logo" class="h-[34px] w-auto mb-lg object-contain" src="/cleanicon-logo.png"/>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Choose your AI Provider</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-sm max-w-lg">Select a primary AI model provider to power automated threat analysis and log synthesis.</p>
+</div>
+<!-- Vendor Selection Grid -->
+<div class="w-full grid grid-cols-1 md:grid-cols-3 gap-md mb-lg">
+<!-- OpenAI Card (Selected State) -->
+<label data-provider-card="" class="relative flex flex-col items-center justify-center p-md bg-surface-container-lowest border border-surface-variant rounded-xl cursor-pointer hover:bg-surface-container-low hover:border-outline-variant transition-all duration-200">
+<input checked="" class="sr-only" name="ai_provider" type="radio" value="openai"/>
+<div data-provider-check="" class="absolute top-sm right-sm text-primary-container hidden">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div data-provider-icon-wrap="" class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center mb-sm text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[24px]">smart_toy</span>
+</div>
+<span data-provider-label="" class="font-headline-md text-headline-md text-on-surface-variant transition-colors">OpenAI</span>
+</label>
+<!-- Anthropic Card -->
+<label data-provider-card="" class="relative flex flex-col items-center justify-center p-md bg-surface-container-lowest border border-surface-variant rounded-xl cursor-pointer hover:bg-surface-container-low hover:border-outline-variant transition-all duration-200 group">
+<input class="sr-only" name="ai_provider" type="radio" value="anthropic"/>
+<div data-provider-check="" class="absolute top-sm right-sm text-primary-container hidden">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div data-provider-icon-wrap="" class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center mb-sm text-on-surface-variant group-hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[24px]">psychology</span>
+</div>
+<span data-provider-label="" class="font-headline-md text-headline-md text-on-surface-variant group-hover:text-on-surface transition-colors">Anthropic</span>
+</label>
+<!-- OpenRouter Card -->
+<label data-provider-card="" class="relative flex flex-col items-center justify-center p-md bg-surface-container-lowest border border-surface-variant rounded-xl cursor-pointer hover:bg-surface-container-low hover:border-outline-variant transition-all duration-200 group">
+<input class="sr-only" name="ai_provider" type="radio" value="openrouter"/>
+<div data-provider-check="" class="absolute top-sm right-sm text-primary-container hidden">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div data-provider-icon-wrap="" class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center mb-sm text-on-surface-variant group-hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[24px]">route</span>
+</div>
+<span data-provider-label="" class="font-headline-md text-headline-md text-on-surface-variant group-hover:text-on-surface transition-colors">OpenRouter</span>
+</label>
+</div>
+<!-- API Key Configuration Area -->
+<div class="w-full bg-surface-container-lowest border border-surface-variant rounded-xl p-md md:p-lg flex flex-col gap-md shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+<div class="flex flex-col gap-xs">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase" for="api_key">Enter API Key</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-sm text-outline-variant">key</span>
+<input class="w-full pl-xl pr-md py-sm bg-surface-container-lowest border border-surface-variant rounded-lg font-label-code text-label-code text-on-surface focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container/10 transition-all placeholder:text-outline-variant" id="api_key" placeholder="sk-..." type="password"/>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase" for="ai_model">Choose Model</label>
+<select class="w-full px-md py-sm bg-surface-container-lowest border border-surface-variant rounded-lg font-label-code text-label-code text-on-surface focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container/10 transition-all" id="ai_model">
+<option value="">Enter API key to load models</option>
+</select>
+<span class="font-body-sm text-body-sm text-outline mt-xs" id="model_hint">Models will load automatically from your provider.</span>
+</div>
+<button id="connect-ai-provider-btn" class="w-full bg-primary-container text-on-primary-fixed font-headline-md text-body-md py-sm px-md rounded-lg hover:bg-inverse-primary active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-sm" type="button">
+<span class="material-symbols-outlined text-[20px]">link</span>
+                Connect Provider
+            </button>
+</div>
+<!-- Secondary Action -->
+<button id="skip-ai-provider-btn" class="mt-lg font-body-sm text-body-sm text-tertiary hover:text-on-surface transition-colors duration-200" type="button">
+            
+        </button>
+</main>
+<script>
+  (function () {
+    const AUTH_TOKEN_STORAGE_KEY = 'wazuh_auth_token';
+    const connectBtn = document.getElementById('connect-ai-provider-btn');
+    const skipBtn = document.getElementById('skip-ai-provider-btn');
+    const apiKeyEl = document.getElementById('api_key');
+    const modelSelectEl = document.getElementById('ai_model');
+    const modelHintEl = document.getElementById('model_hint');
+    const radios = Array.from(document.querySelectorAll('input[name="ai_provider"]'));
+    const providerCards = radios.map((radio) => radio.closest('[data-provider-card]')).filter(Boolean);
+    let modelFetchSeq = 0;
+    let debounceTimer = 0;
+
+    function getToken() {
+      return String(localStorage.getItem(AUTH_TOKEN_STORAGE_KEY) || '').trim();
+    }
+    function redirectToLogin() {
+      window.location.replace('/login');
+    }
+    async function apiFetch(url, options = {}) {
+      const token = getToken();
+      if (!token) {
+        redirectToLogin();
+        throw new Error('Authentication required');
+      }
+      const headers = new Headers(options.headers || {});
+      headers.set('Authorization', 'Bearer ' + token);
+      return fetch(url, { ...options, headers });
+    }
+    function selectedProvider() {
+      const checked = radios.find((r) => r.checked);
+      return checked ? String(checked.value || '').trim() : '';
+    }
+    function selectedModelId() {
+      return String(modelSelectEl.value || '').trim();
+    }
+    function updateProviderCardsState() {
+      providerCards.forEach((card) => {
+        const radio = card.querySelector('input[name="ai_provider"]');
+        const check = card.querySelector('[data-provider-check]');
+        const iconWrap = card.querySelector('[data-provider-icon-wrap]');
+        const label = card.querySelector('[data-provider-label]');
+        const isSelected = Boolean(radio && radio.checked);
+
+        card.classList.toggle('border-2', isSelected);
+        card.classList.toggle('border-primary-container', isSelected);
+        card.classList.toggle('border', !isSelected);
+        card.classList.toggle('border-surface-variant', !isSelected);
+
+        if (check) {
+          check.classList.toggle('hidden', !isSelected);
+        }
+        if (iconWrap) {
+          iconWrap.classList.toggle('text-on-surface', isSelected);
+          iconWrap.classList.toggle('text-on-surface-variant', !isSelected);
+        }
+        if (label) {
+          label.classList.toggle('text-on-surface', isSelected);
+          label.classList.toggle('text-on-surface-variant', !isSelected);
+        }
+      });
+    }
+    function setModelHint(text) {
+      if (modelHintEl) {
+        modelHintEl.textContent = text;
+      }
+    }
+    function updateConnectButtonState() {
+      const aiProvider = selectedProvider();
+      const aiApiKey = String(apiKeyEl.value || '').trim();
+      const aiModelId = selectedModelId();
+      connectBtn.disabled = !(aiProvider && aiApiKey && aiModelId);
+      connectBtn.classList.toggle('opacity-50', connectBtn.disabled);
+      connectBtn.classList.toggle('cursor-not-allowed', connectBtn.disabled);
+    }
+    function setModelOptions(models, preferredModelId = '') {
+      const options = Array.isArray(models) ? models : [];
+      modelSelectEl.innerHTML = '';
+      const defaultOption = document.createElement('option');
+      defaultOption.value = '';
+      defaultOption.textContent = options.length ? 'Choose model' : 'No models found';
+      modelSelectEl.appendChild(defaultOption);
+
+      options.forEach((model) => {
+        const id = String(model.id || '').trim();
+        if (!id) return;
+        const option = document.createElement('option');
+        option.value = id;
+        option.textContent = String(model.name || id);
+        modelSelectEl.appendChild(option);
+      });
+
+      if (preferredModelId) {
+        const existing = Array.from(modelSelectEl.options).some((opt) => opt.value === preferredModelId);
+        if (existing) {
+          modelSelectEl.value = preferredModelId;
+        }
+      }
+      updateConnectButtonState();
+    }
+    async function loadModels(preferredModelId = '') {
+      const aiProvider = selectedProvider();
+      const aiApiKey = String(apiKeyEl.value || '').trim();
+      if (!aiProvider || !aiApiKey) {
+        setModelOptions([], '');
+        setModelHint('Enter provider API key to load models.');
+        return;
+      }
+
+      const seq = ++modelFetchSeq;
+      setModelHint('Loading models...');
+      setModelOptions([], '');
+      try {
+        const response = await apiFetch('/api/onboarding/ai-models', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ aiProvider, aiApiKey })
+        });
+        const payload = await response.json().catch(() => ({}));
+        if (seq !== modelFetchSeq) return;
+        if (!response.ok) {
+          setModelHint(payload.error || 'Failed to load models.');
+          updateConnectButtonState();
+          return;
+        }
+        const models = Array.isArray(payload.models) ? payload.models : [];
+        setModelOptions(models, preferredModelId);
+        setModelHint(models.length ? `${models.length} models loaded.` : 'No models found.');
+      } catch (_error) {
+        if (seq !== modelFetchSeq) return;
+        setModelHint('Failed to load models from provider.');
+        updateConnectButtonState();
+      }
+    }
+    function scheduleModelLoad() {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => loadModels(selectedModelId()), 450);
+    }
+
+    async function guardAndHydrate() {
+      const response = await apiFetch('/api/onboarding/status');
+      if (!response.ok) {
+        redirectToLogin();
+        return;
+      }
+      const payload = await response.json().catch(() => ({}));
+      const setup = payload.setup || {};
+      if (setup.aiProvider) {
+        radios.forEach((radio) => { radio.checked = radio.value === setup.aiProvider; });
+      }
+      updateProviderCardsState();
+      if (setup.aiApiKey && apiKeyEl) {
+        apiKeyEl.value = setup.aiApiKey;
+      }
+      await loadModels(String(setup.aiModelId || '').trim());
+    }
+
+    radios.forEach((radio) => {
+      radio.addEventListener('change', () => {
+        updateProviderCardsState();
+        setModelHint('Loading models...');
+        loadModels('');
+      });
+    });
+    apiKeyEl.addEventListener('input', () => {
+      setModelHint('Loading models...');
+      scheduleModelLoad();
+    });
+    apiKeyEl.addEventListener('blur', () => {
+      loadModels(selectedModelId());
+    });
+    modelSelectEl.addEventListener('change', updateConnectButtonState);
+
+    connectBtn.addEventListener('click', async () => {
+      const aiProvider = selectedProvider();
+      const aiApiKey = String(apiKeyEl.value || '').trim();
+      const aiModelId = selectedModelId();
+      if (!aiProvider || !aiApiKey || !aiModelId) {
+        alert('Please choose provider, API key and model.');
+        return;
+      }
+      const response = await apiFetch('/api/onboarding/ai-provider', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ aiProvider, aiApiKey, aiModelId })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        alert(payload.error || 'Failed to save AI provider.');
+        return;
+      }
+      window.location.assign(payload.nextPath || '/webprovider');
+    });
+
+    skipBtn.addEventListener('click', () => {
+      alert('AI provider setup is required before continuing.');
+    });
+
+    updateConnectButtonState();
+    updateProviderCardsState();
+    guardAndHydrate().catch(() => redirectToLogin());
+  })();
+</script>
+</body></html>

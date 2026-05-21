@@ -1,0 +1,563 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Wazuh Configuration - Clear SIEM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e2e2e2",
+                        "on-secondary-container": "#626469",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f1",
+                        "surface-dim": "#dadada",
+                        "surface-tint": "#006b5b",
+                        "primary-fixed-dim": "#00dfc1",
+                        "outline-variant": "#b9cac4",
+                        "background": "#f9f9f9",
+                        "tertiary-fixed": "#d3e4fe",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2f3131",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "secondary-fixed": "#e1e2e8",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "primary": "#006b5b",
+                        "surface": "#f9f9f9",
+                        "outline": "#6a7b76",
+                        "inverse-primary": "#00dfc1",
+                        "on-tertiary-container": "#506076",
+                        "on-primary-container": "#006c5c",
+                        "on-surface-variant": "#3a4a46",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#c5c6cc",
+                        "on-background": "#1a1c1c",
+                        "surface-container-highest": "#e2e2e2",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "surface-bright": "#f9f9f9",
+                        "tertiary": "#505f76",
+                        "on-secondary-fixed": "#191c20",
+                        "on-primary-fixed-variant": "#005144",
+                        "on-surface": "#1a1c1c",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#eeeeee",
+                        "on-primary-fixed": "#00201a",
+                        "primary-fixed": "#26fedc",
+                        "surface-container-high": "#e8e8e8",
+                        "surface-container-low": "#f3f3f3",
+                        "secondary-container": "#e1e2e8",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#cbdbf5",
+                        "secondary": "#5c5e63",
+                        "primary-container": "#00f5d4",
+                        "on-secondary-fixed-variant": "#44474b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "32px",
+                        "base": "8px",
+                        "lg": "40px",
+                        "gutter": "24px",
+                        "xs": "4px",
+                        "xl": "64px",
+                        "sm": "12px",
+                        "md": "24px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "label-code": ["JetBrains Mono"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-caps": ["11px", { "lineHeight": "1.2", "letterSpacing": "0.08em", "fontWeight": "700" }],
+                        "label-code": ["12px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1;
+        }
+	        body {
+	            background-color: theme('colors.background');
+	        }
+	        .siem-test-spinner {
+	            display: inline-block;
+	            width: 12px;
+	            height: 12px;
+	            margin-right: 6px;
+	            border: 2px solid rgba(15, 23, 42, 0.28);
+	            border-top-color: #0f172a;
+	            border-radius: 999px;
+	            vertical-align: -2px;
+	            animation: siem-test-spin 700ms linear infinite;
+	        }
+	        @keyframes siem-test-spin {
+	            100% { transform: rotate(360deg); }
+	        }
+	    </style>
+<style data-stitch-cursor=""></style><style data-stitch-scroll-lock=""></style><script src="chrome-extension://amcccnldajjnngnaoinemnaloklogjak/assets/main-world.ts-B0-0X4eu.js" type="module"></script></head>
+<body class="min-h-screen flex flex-col font-body-md text-on-surface selection:bg-primary-container selection:text-on-background overflow-x-hidden overflow-y-auto" data-demoway-document-id="kycq1ef0i0qszfp850uo2bkz">
+<!-- TopNavBar (Shared Component) -->
+
+<!-- Main Content -->
+<main class="flex-grow py-lg md:py-xl px-margin-mobile md:px-margin-desktop flex items-center justify-center min-h-0">
+<div class="w-full max-w-[640px] flex flex-col gap-lg">
+<!-- Page Header -->
+
+<!-- Configuration Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-md md:p-lg flex flex-col gap-lg shadow-sm">
+<!-- Wazuh Indexer Section -->
+<section class="flex flex-col gap-md">
+<h2 class="font-label-caps text-label-caps uppercase text-on-surface-variant border-b border-surface-variant pb-xs">Wazuh Indexer</h2>
+<div class="flex flex-col gap-sm">
+<label class="font-body-sm text-body-sm text-on-surface font-medium" for="indexer_url">Indexer URL</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT px-sm py-[10px] font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all" id="indexer_url" placeholder="https://indexer.example.com:9200" type="text">
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="flex flex-col gap-sm">
+<label class="font-body-sm text-body-sm text-on-surface font-medium" for="indexer_user">Admin Username</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT px-sm py-[10px] font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all" id="indexer_user" placeholder="admin" type="text">
+</div>
+<div class="flex flex-col gap-sm">
+<label class="font-body-sm text-body-sm text-on-surface font-medium" for="indexer_pass">Admin Password</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT px-sm py-[10px] font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all" id="indexer_pass" placeholder="••••••••" type="password">
+</div>
+</div>
+<div class="flex flex-col gap-xs items-start">
+<button id="test-indexer-btn" class="bg-[#16ddc5] text-[#0f172a] font-body-sm text-body-sm font-bold px-sm py-[6px] rounded-DEFAULT hover:bg-[#12c9b3] transition-colors duration-150 cursor-pointer active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed" type="button">
+Test Indexer
+</button>
+<p id="indexer-test-status" class="font-body-sm text-body-sm text-on-surface-variant min-h-[20px]"></p>
+</div>
+</section>
+<!-- Wazuh Manager Section -->
+<section class="flex flex-col gap-md mt-sm">
+<h2 class="font-label-caps text-label-caps uppercase text-on-surface-variant border-b border-surface-variant pb-xs">Wazuh Manager</h2>
+<div class="flex flex-col gap-sm">
+<label class="font-body-sm text-body-sm text-on-surface font-medium" for="manager_url">Manager URL / IP</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT px-sm py-[10px] font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all" id="manager_url" placeholder="192.168.1.100" type="text">
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="flex flex-col gap-sm md:col-span-2">
+<label class="font-body-sm text-body-sm text-on-surface font-medium" for="ssh_user">SSH User</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT px-sm py-[10px] font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all" id="ssh_user" placeholder="wazuh-user" type="text">
+</div>
+<div class="flex flex-col gap-sm">
+<label class="font-body-sm text-body-sm text-on-surface font-medium" for="ssh_port">SSH Port</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT px-sm py-[10px] font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all" id="ssh_port" type="number" value="22">
+</div>
+</div>
+<div class="flex flex-col gap-xs items-start">
+<button id="test-manager-btn" class="bg-[#16ddc5] text-[#0f172a] font-body-sm text-body-sm font-bold px-sm py-[6px] rounded-DEFAULT hover:bg-[#12c9b3] transition-colors duration-150 cursor-pointer active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed" type="button">
+Test Manager
+</button>
+<p id="manager-test-status" class="font-body-sm text-body-sm text-on-surface-variant min-h-[20px]"></p>
+</div>
+<div class="flex flex-col gap-sm">
+<label class="font-body-sm text-body-sm text-on-surface font-medium" for="ssh_auth_mode">SSH Authentication Mode</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT px-sm py-[10px] font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all" id="ssh_auth_mode">
+<option value="password">Password</option>
+<option value="key_file">Private Key</option>
+</select>
+
+<div id="ssh_password_wrap" class="flex flex-col gap-sm">
+<label class="font-body-sm text-body-sm text-on-surface font-medium" for="ssh_auth">SSH Password</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT px-sm py-[10px] font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all" id="ssh_auth" placeholder="Enter SSH password" type="password">
+</div>
+
+<div id="ssh_key_wrap" class="hidden flex flex-col gap-sm">
+<label class="font-body-sm text-body-sm text-on-surface font-medium" for="ssh_key_text">SSH Private Key</label>
+<div class="flex gap-sm items-start w-full">
+<textarea class="w-full min-h-[140px] bg-surface-container-lowest border border-outline-variant rounded-DEFAULT px-sm py-[10px] font-label-code text-label-code text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all resize-y" id="ssh_key_text" placeholder="-----BEGIN OPENSSH PRIVATE KEY-----"></textarea>
+<button id="ssh_key_import_btn" type="button" class="shrink-0 bg-surface-container-low hover:bg-surface-variant border border-outline-variant text-on-surface font-body-sm text-body-sm px-sm py-xs rounded-[2px] transition-colors">
+Import .key
+</button>
+</div>
+</div>
+<input id="ssh_key_file" type="file" accept=".key,.pem,text/plain" class="hidden">
+<p id="ssh_auth_mode_hint" class="text-body-sm text-on-surface-variant">Auth mode: password</p>
+</div>
+</section>
+<!-- Actions -->
+<div class="mt-md pt-md border-t border-surface-variant flex justify-end gap-md">
+<button id="cancel-siem-config-btn" class="bg-surface-container-lowest border border-outline-variant text-on-background font-body-md text-body-md font-medium px-md py-[10px] rounded-DEFAULT hover:bg-surface-container-low transition-colors duration-200 cursor-pointer active:scale-95" type="button">
+                        Cancel
+                    </button>
+<button id="finish-siem-config-btn" class="bg-primary-container text-on-background font-body-md text-body-md font-bold px-md py-[10px] rounded-DEFAULT hover:bg-[#00e6c7] transition-colors duration-200 cursor-pointer active:scale-95 shadow-sm" type="button">
+                        Finish Setup
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<script>
+  (function () {
+    const AUTH_TOKEN_STORAGE_KEY = 'wazuh_auth_token';
+    const indexerUrlEl = document.getElementById('indexer_url');
+    const indexerUserEl = document.getElementById('indexer_user');
+    const indexerPassEl = document.getElementById('indexer_pass');
+    const managerUrlEl = document.getElementById('manager_url');
+    const sshUserEl = document.getElementById('ssh_user');
+    const sshPortEl = document.getElementById('ssh_port');
+    const sshAuthModeEl = document.getElementById('ssh_auth_mode');
+    const sshPasswordWrapEl = document.getElementById('ssh_password_wrap');
+    const sshKeyWrapEl = document.getElementById('ssh_key_wrap');
+    const sshAuthEl = document.getElementById('ssh_auth');
+    const sshKeyTextEl = document.getElementById('ssh_key_text');
+    const sshKeyImportBtnEl = document.getElementById('ssh_key_import_btn');
+    const sshKeyFileEl = document.getElementById('ssh_key_file');
+    const sshAuthModeHintEl = document.getElementById('ssh_auth_mode_hint');
+    const finishBtn = document.getElementById('finish-siem-config-btn');
+    const cancelBtn = document.getElementById('cancel-siem-config-btn');
+    const testIndexerBtnEl = document.getElementById('test-indexer-btn');
+    const indexerTestStatusEl = document.getElementById('indexer-test-status');
+    const testManagerBtnEl = document.getElementById('test-manager-btn');
+    const managerTestStatusEl = document.getElementById('manager-test-status');
+    let sshAuthMode = 'password';
+    let indexerTestInProgress = false;
+    let managerTestInProgress = false;
+
+    function getToken() {
+      return String(localStorage.getItem(AUTH_TOKEN_STORAGE_KEY) || '').trim();
+    }
+    function redirectToLogin() {
+      window.location.replace('/login');
+    }
+    async function apiFetch(url, options = {}) {
+      const token = getToken();
+      if (!token) {
+        redirectToLogin();
+        throw new Error('Authentication required');
+      }
+      const headers = new Headers(options.headers || {});
+      headers.set('Authorization', 'Bearer ' + token);
+      return fetch(url, { ...options, headers });
+    }
+
+    function normalizeSshAuthMode(value) {
+      return String(value || '').trim().toLowerCase() === 'key_file' ? 'key_file' : 'password';
+    }
+
+    function normalizeSshPrivateKeyText(value) {
+      let key = String(value || '');
+      if (!key) {
+        return '';
+      }
+      key = key.replace(/\r\n/g, '\n').replace(/\r/g, '\n').trim();
+      if (!key.includes('\n') && key.includes('\\n')) {
+        key = key.replace(/\\n/g, '\n');
+      }
+      if (!key.includes('\n')) {
+        const inlineMatch = key.match(
+          /^(-----BEGIN [A-Z0-9 ]*PRIVATE KEY-----)(.+)(-----END [A-Z0-9 ]*PRIVATE KEY-----)$/
+        );
+        if (inlineMatch) {
+          const header = inlineMatch[1];
+          const body = inlineMatch[2].replace(/\s+/g, '');
+          const footer = inlineMatch[3];
+          const wrappedBody = body.match(/.{1,70}/g)?.join('\n') || '';
+          key = `${header}\n${wrappedBody}\n${footer}`;
+        }
+      }
+      return key;
+    }
+
+    function readSshAuthValue(mode = sshAuthMode) {
+      if (normalizeSshAuthMode(mode) === 'key_file') {
+        return normalizeSshPrivateKeyText(sshKeyTextEl?.value || '');
+      }
+      return String(sshAuthEl?.value || '').trim();
+    }
+
+    function setSshAuthMode(mode) {
+      sshAuthMode = normalizeSshAuthMode(mode);
+      if (sshAuthModeEl) {
+        sshAuthModeEl.value = sshAuthMode;
+      }
+      if (sshPasswordWrapEl) {
+        sshPasswordWrapEl.classList.toggle('hidden', sshAuthMode === 'key_file');
+      }
+      if (sshKeyWrapEl) {
+        sshKeyWrapEl.classList.toggle('hidden', sshAuthMode !== 'key_file');
+      }
+      if (sshAuthModeHintEl) {
+        sshAuthModeHintEl.textContent = sshAuthMode === 'key_file' ? 'Auth mode: key file uploaded' : 'Auth mode: password';
+      }
+    }
+
+    function readPayload() {
+      const mode = normalizeSshAuthMode(sshAuthModeEl?.value || sshAuthMode);
+      const authValue = readSshAuthValue(mode);
+      const inferredMode = /BEGIN [A-Z ]*PRIVATE KEY/.test(authValue) ? 'key_file' : mode;
+      return {
+        indexerUrl: String(indexerUrlEl.value || '').trim(),
+        indexerUser: String(indexerUserEl.value || '').trim(),
+        indexerPass: String(indexerPassEl.value || '').trim(),
+        managerUrl: String(managerUrlEl.value || '').trim(),
+        sshUser: String(sshUserEl.value || '').trim(),
+        sshPort: Number(sshPortEl.value || 22),
+        sshAuth: authValue,
+        sshAuthMode: normalizeSshAuthMode(inferredMode)
+      };
+    }
+
+    function setInlineTestStatus(element, message, type = 'neutral') {
+      if (!element) {
+        return;
+      }
+      element.textContent = String(message || '').trim();
+      element.classList.remove('text-on-surface-variant', 'text-red-400', 'text-[#00e6c7]');
+      if (type === 'error') {
+        element.classList.add('text-red-400');
+        return;
+      }
+      if (type === 'success') {
+        element.classList.add('text-[#00e6c7]');
+        return;
+      }
+      element.classList.add('text-on-surface-variant');
+    }
+
+    async function testIndexerConnection() {
+      if (indexerTestInProgress) {
+        return;
+      }
+      const indexerUrl = String(indexerUrlEl?.value || '').trim();
+      const indexerUser = String(indexerUserEl?.value || '').trim();
+      const indexerPass = String(indexerPassEl?.value || '').trim();
+      if (!indexerUrl || !indexerUser || !indexerPass) {
+        setInlineTestStatus(indexerTestStatusEl, 'Need indexer URL, user, and password.', 'error');
+        return;
+      }
+
+      indexerTestInProgress = true;
+      if (testIndexerBtnEl) {
+        testIndexerBtnEl.disabled = true;
+        testIndexerBtnEl.innerHTML = '<span class="siem-test-spinner"></span>Testing';
+      }
+      setInlineTestStatus(indexerTestStatusEl, 'Testing indexer...', 'neutral');
+
+      try {
+        const response = await apiFetch('/api/settings/test-indexer', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ indexerUrl, indexerUser, indexerPass })
+        });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          throw new Error(payload.error || 'Indexer connection failed.');
+        }
+        setInlineTestStatus(indexerTestStatusEl, payload.message || 'Indexer connection successful.', 'success');
+      } catch (error) {
+        setInlineTestStatus(indexerTestStatusEl, error.message || 'Indexer connection failed.', 'error');
+      } finally {
+        indexerTestInProgress = false;
+        if (testIndexerBtnEl) {
+          testIndexerBtnEl.disabled = false;
+          testIndexerBtnEl.textContent = 'Test Indexer';
+        }
+      }
+    }
+
+    async function testManagerConnection() {
+      if (managerTestInProgress) {
+        return;
+      }
+      const managerUrl = String(managerUrlEl?.value || '').trim();
+      const sshPort = Number(sshPortEl?.value || 22);
+      const sshUser = String(sshUserEl?.value || '').trim();
+      const testSshAuthMode = normalizeSshAuthMode(sshAuthModeEl?.value || sshAuthMode);
+      const sshAuth = readSshAuthValue(testSshAuthMode);
+      if (!managerUrl || !Number.isFinite(sshPort) || sshPort <= 0) {
+        setInlineTestStatus(managerTestStatusEl, 'Need manager URL/IP and valid SSH port.', 'error');
+        return;
+      }
+      if (!sshUser || !sshAuth) {
+        setInlineTestStatus(managerTestStatusEl, 'Need SSH user and authentication value.', 'error');
+        return;
+      }
+
+      managerTestInProgress = true;
+      if (testManagerBtnEl) {
+        testManagerBtnEl.disabled = true;
+        testManagerBtnEl.innerHTML = '<span class="siem-test-spinner"></span>Testing';
+      }
+      setInlineTestStatus(managerTestStatusEl, 'Testing SSH login...', 'neutral');
+
+      try {
+        const response = await apiFetch('/api/settings/test-manager', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ managerUrl, sshPort, sshUser, sshAuth, sshAuthMode: testSshAuthMode })
+        });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          throw new Error(payload.error || 'Manager connection failed.');
+        }
+        setInlineTestStatus(managerTestStatusEl, payload.message || 'Manager SSH login successful.', 'success');
+      } catch (error) {
+        setInlineTestStatus(managerTestStatusEl, error.message || 'Manager connection failed.', 'error');
+      } finally {
+        managerTestInProgress = false;
+        if (testManagerBtnEl) {
+          testManagerBtnEl.disabled = false;
+          testManagerBtnEl.textContent = 'Test Manager';
+        }
+      }
+    }
+
+    async function guardAndHydrate() {
+      const response = await apiFetch('/api/onboarding/status');
+      if (!response.ok) {
+        redirectToLogin();
+        return;
+      }
+      const payload = await response.json().catch(() => ({}));
+      const cfg = (payload.setup && payload.setup.siemConfig) || {};
+      if (cfg.indexerUrl) indexerUrlEl.value = cfg.indexerUrl;
+      if (cfg.indexerUser) indexerUserEl.value = cfg.indexerUser;
+      if (cfg.indexerPass) indexerPassEl.value = cfg.indexerPass;
+      if (cfg.managerUrl) managerUrlEl.value = cfg.managerUrl;
+      if (cfg.sshUser) sshUserEl.value = cfg.sshUser;
+      if (cfg.sshPort) sshPortEl.value = cfg.sshPort;
+      if (sshAuthEl) sshAuthEl.value = '';
+      if (sshKeyTextEl) sshKeyTextEl.value = '';
+      const savedAuthRaw = String(cfg.sshAuth || '');
+      const savedMode = normalizeSshAuthMode(cfg.sshAuthMode || '');
+      if (savedMode === 'key_file') {
+        if (sshKeyTextEl) sshKeyTextEl.value = normalizeSshPrivateKeyText(savedAuthRaw);
+      } else if (savedAuthRaw && sshAuthEl) {
+        sshAuthEl.value = savedAuthRaw.trim();
+      }
+      if (cfg.sshAuthMode) {
+        setSshAuthMode(cfg.sshAuthMode);
+      } else if (savedAuthRaw && /BEGIN [A-Z ]*PRIVATE KEY/.test(savedAuthRaw)) {
+        setSshAuthMode('key_file');
+        if (sshKeyTextEl) sshKeyTextEl.value = normalizeSshPrivateKeyText(savedAuthRaw);
+      } else {
+        setSshAuthMode('password');
+      }
+    }
+
+    if (sshKeyImportBtnEl && sshKeyFileEl) {
+      sshKeyImportBtnEl.addEventListener('click', () => {
+        sshKeyFileEl.click();
+      });
+      sshKeyFileEl.addEventListener('change', async () => {
+        const file = sshKeyFileEl.files && sshKeyFileEl.files[0] ? sshKeyFileEl.files[0] : null;
+        if (!file) {
+          return;
+        }
+        const lower = String(file.name || '').toLowerCase();
+        if (!lower.endsWith('.key') && !lower.endsWith('.pem')) {
+          alert('Please upload a .key or .pem file.');
+          sshKeyFileEl.value = '';
+          return;
+        }
+        const text = normalizeSshPrivateKeyText(await file.text());
+        if (!text) {
+          alert('Uploaded key file is empty.');
+          sshKeyFileEl.value = '';
+          return;
+        }
+        if (sshKeyTextEl) {
+          sshKeyTextEl.value = text;
+        }
+        setSshAuthMode('key_file');
+        sshKeyFileEl.value = '';
+      });
+    }
+
+    if (sshAuthModeEl) {
+      sshAuthModeEl.addEventListener('change', () => {
+        setSshAuthMode(sshAuthModeEl.value);
+      });
+    }
+
+    if (sshAuthEl) {
+      sshAuthEl.addEventListener('input', () => {
+        if (sshAuthMode !== 'key_file') {
+          setSshAuthMode('password');
+        }
+      });
+    }
+
+    if (sshKeyTextEl) {
+      sshKeyTextEl.addEventListener('input', () => {
+        setSshAuthMode('key_file');
+      });
+    }
+
+    if (testIndexerBtnEl) {
+      testIndexerBtnEl.addEventListener('click', () => {
+        testIndexerConnection().catch(() => {});
+      });
+    }
+
+    if (testManagerBtnEl) {
+      testManagerBtnEl.addEventListener('click', () => {
+        testManagerConnection().catch(() => {});
+      });
+    }
+
+    finishBtn.addEventListener('click', async () => {
+      const body = readPayload();
+      if (!body.indexerUrl || !body.indexerUser || !body.indexerPass || !body.managerUrl || !body.sshUser || !body.sshAuth) {
+        alert('Please fill all required SIEM configuration fields.');
+        return;
+      }
+      const response = await apiFetch('/api/onboarding/siem-config', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        alert(payload.error || 'Failed to save SIEM configuration.');
+        return;
+      }
+      window.location.assign(payload.nextPath || '/');
+    });
+
+    cancelBtn.addEventListener('click', () => {
+      window.location.assign('/siemprovider');
+    });
+
+    setSshAuthMode('password');
+    guardAndHydrate().catch(() => redirectToLogin());
+  })();
+</script>
+
+
+
+</body></html>

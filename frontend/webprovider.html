@@ -1,0 +1,226 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Web Search Provider - Clear</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#eeeeee",
+                        "secondary-fixed-dim": "#c5c6cc",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e8e8e8",
+                        "tertiary-fixed": "#d3e4fe",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2f3131",
+                        "inverse-on-surface": "#f0f1f1",
+                        "secondary": "#5c5e63",
+                        "tertiary": "#505f76",
+                        "on-tertiary-container": "#506076",
+                        "primary-fixed-dim": "#00dfc1",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f3f3f3",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#26fedc",
+                        "on-secondary-fixed-variant": "#44474b",
+                        "surface-tint": "#006b5b",
+                        "on-secondary-container": "#626469",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-primary-fixed": "#00201a",
+                        "background": "#f9f9f9",
+                        "on-surface": "#1a1c1c",
+                        "tertiary-container": "#cbdbf5",
+                        "primary": "#006b5b",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#dadada",
+                        "surface-variant": "#e2e2e2",
+                        "on-primary-container": "#006c5c",
+                        "on-background": "#1a1c1c",
+                        "secondary-fixed": "#e1e2e8",
+                        "secondary-container": "#e1e2e8",
+                        "on-surface-variant": "#3a4a46",
+                        "on-secondary-fixed": "#191c20",
+                        "primary-container": "#00f5d4",
+                        "surface": "#f9f9f9",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#00dfc1",
+                        "surface-bright": "#f9f9f9",
+                        "outline": "#6a7b76",
+                        "on-primary-fixed-variant": "#005144",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#b9cac4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "64px",
+                        "margin-mobile": "16px",
+                        "lg": "40px",
+                        "base": "8px",
+                        "sm": "12px",
+                        "gutter": "24px",
+                        "md": "24px",
+                        "margin-desktop": "32px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "label-code": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["11px", { "lineHeight": "1.2", "letterSpacing": "0.08em", "fontWeight": "700" }],
+                        "label-code": ["12px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #ffffff;
+            color: #1a1c1c;
+        }
+    </style>
+<style data-stitch-cursor=""></style><style data-stitch-scroll-lock=""></style><script src="chrome-extension://amcccnldajjnngnaoinemnaloklogjak/assets/main-world.ts-B0-0X4eu.js" type="module"></script></head>
+<body class="min-h-screen flex flex-col font-body-md text-body-md bg-surface-container-lowest overflow-x-hidden overflow-y-auto" data-demoway-document-id="yfkkmgi7wxkj8ozxkk0yhc6h">
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col items-center justify-center p-margin-mobile md:p-margin-desktop w-full max-w-2xl mx-auto min-h-0"><div class="w-full flex justify-center mb-lg">
+  <img src="/cleanicon-logo.png" alt="Clear Logo" class="h-[34px] w-auto object-contain">
+</div>
+<!-- Header Section -->
+<div class="w-full text-center mb-lg">
+<h1 class="font-headline-lg text-headline-lg md:font-headline-lg md:text-headline-lg mb-sm text-on-surface">Web Search Provider</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mx-auto">Select a search engine to power real-time web intelligence and threat research.</p>
+</div>
+<!-- Provider Selection Grid -->
+<div class="w-full grid grid-cols-1 md:grid-cols-2 gap-md mb-lg">
+<!-- Tavily (Active) -->
+<label class="relative flex flex-col items-center justify-center p-xl border-2 border-primary rounded-xl bg-surface-container-lowest cursor-pointer transition-all duration-200 hover:bg-surface-container-low group">
+<input checked="" class="sr-only" name="search_provider" type="radio" value="tavily">
+<div class="absolute top-sm right-sm text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<img alt="Tavily Logo" class="h-12 object-contain grayscale-0 transition-all duration-200 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPfIOF-CdGtS9cf_YdhK3kjvJ0LaV5kg1APDcXmXBDqseppgNNBwGn3TDj7m0MUYkZXn-HxUrwYyLW0bFJ19apKAYp-l7xHPyd5a-ShZhsca6PWTtp4qvcyod0FwJd-Mjqmk9iMM07KHoIJQyGNQd-CDHJHGvPgvHPtoWMtZkk7WTSCvcjXJ8EShE00kMrRKNvohMOjyMGemSXWwcbzQq20qLBaj1Oa-_lX1KACT0Iqc7fiNqrzqZwmu7laXfN1KlxkL0fGFA_1qw">
+</label>
+<!-- Exa (Coming Soon / Disabled) -->
+<div class="relative flex flex-col items-center justify-center p-xl border border-outline-variant rounded-xl bg-surface-container-lowest opacity-60 cursor-not-allowed">
+<div class="absolute top-0 right-0 transform translate-x-1/4 -translate-y-1/4">
+<span class="bg-surface-container-highest text-on-surface-variant font-label-caps text-label-caps px-2 py-1 rounded-full border border-outline-variant shadow-sm">Coming Soon</span>
+</div>
+<img alt="Exa Logo" class="h-12 object-contain grayscale opacity-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIwsZe-RBqgbd-8vPX9d-re8mdn54lCLibumWPWQrdjfYf1PiYLOT6E1TQIS-1GM2KfIJyZaw--8wLxi3Kn7uOeoJHVAsLnw8WDcdjE_boPoyCsXDZaG2OTheOBvx8ip0hiGHClad4Ewo8KQhBFLb82RLXzbRd1wUWjNpOC6wKnU-J5ywgHlnveaDWwVG7ke1YFz71RKl3RyzeLYIHcnjeqssK0fpxvkNEGbbccCyx4ssjFBnZdjRXAhdCIJP6AI04_TMkyikgXi0">
+</div>
+</div>
+<!-- API Key Configuration Section -->
+<div class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm">
+<div class="mb-md">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-xs uppercase tracking-widest" for="api_key">Enter API Key</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-sm flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">key</span>
+</div>
+<input class="w-full pl-xl pr-sm py-sm border border-outline-variant rounded-lg bg-surface-container-lowest text-on-surface font-label-code text-label-code focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200 placeholder-outline-variant" id="api_key" name="api_key" placeholder="tvly-..." type="password">
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-xs">Your API key is securely stored and never shared.</p>
+</div>
+<div class="flex justify-end">
+<button id="connect-web-provider-btn" class="inline-flex items-center justify-center px-lg py-sm bg-primary-container text-[#1A1D21] font-bold rounded-lg transition-all duration-200 hover:bg-primary-fixed hover:shadow-sm active:scale-95" type="button">
+                    Connect Provider
+                    <span class="material-symbols-outlined ml-xs text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<script>
+  (function () {
+    const AUTH_TOKEN_STORAGE_KEY = 'wazuh_auth_token';
+    const connectBtn = document.getElementById('connect-web-provider-btn');
+    const apiKeyEl = document.getElementById('api_key');
+    const radios = Array.from(document.querySelectorAll('input[name="search_provider"]'));
+
+    function getToken() {
+      return String(localStorage.getItem(AUTH_TOKEN_STORAGE_KEY) || '').trim();
+    }
+    function redirectToLogin() {
+      window.location.replace('/login');
+    }
+    async function apiFetch(url, options = {}) {
+      const token = getToken();
+      if (!token) {
+        redirectToLogin();
+        throw new Error('Authentication required');
+      }
+      const headers = new Headers(options.headers || {});
+      headers.set('Authorization', 'Bearer ' + token);
+      return fetch(url, { ...options, headers });
+    }
+    function selectedProvider() {
+      const checked = radios.find((r) => r.checked);
+      return checked ? String(checked.value || '').trim() : '';
+    }
+
+    async function guardAndHydrate() {
+      const response = await apiFetch('/api/onboarding/status');
+      if (!response.ok) {
+        redirectToLogin();
+        return;
+      }
+      const payload = await response.json().catch(() => ({}));
+      const setup = payload.setup || {};
+      if (setup.webProvider) {
+        radios.forEach((radio) => { radio.checked = radio.value === setup.webProvider; });
+      }
+      if (setup.webApiKey && apiKeyEl) {
+        apiKeyEl.value = setup.webApiKey;
+      }
+    }
+
+    connectBtn.addEventListener('click', async () => {
+      const webProvider = selectedProvider();
+      const webApiKey = String(apiKeyEl.value || '').trim();
+      if (!webProvider || !webApiKey) {
+        alert('Please choose provider and API key.');
+        return;
+      }
+      const response = await apiFetch('/api/onboarding/web-provider', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ webProvider, webApiKey })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        alert(payload.error || 'Failed to save web provider.');
+        return;
+      }
+      window.location.assign(payload.nextPath || '/siemprovider');
+    });
+
+    guardAndHydrate().catch(() => redirectToLogin());
+  })();
+</script>
+
+
+</body></html>

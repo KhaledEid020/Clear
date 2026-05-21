@@ -2,6 +2,8 @@
 
 Clear is an AI-driven detection engineering workflow focused on reducing noisy false-positive SIEM alerts, starting with Wazuh.
 
+<img width="1856" height="821" alt="Pasted image 20260520225427" src="https://github.com/user-attachments/assets/0c70b041-7b4f-45da-8d30-ab2966ebf51a" />
+
 ## Overview
 
 SOC teams often spend weeks or months manually tuning noisy detection rules. Clear shortens that cycle by orchestrating specialized agents that investigate a rule, gather context, and propose safer tuning actions.

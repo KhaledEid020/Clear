@@ -41,13 +41,13 @@ Workflow ID: `wazuh-fine-tuning-pipeline`
 
 ## Environment Configuration
 
-1. Create local env file:
+1. `.env` is optional. Create it only if you want to override defaults:
 
 ```bash
 cp example.env .env
 ```
 
-2. Infrastructure variables in `.env`:
+2. Optional infrastructure overrides in `.env`:
 - `DB_USER`, `DB_PASS`, `DB_DATABASE`
 - `APP_DB_SCHEMA`
 - `FRONTEND_PORT`

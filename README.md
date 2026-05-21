@@ -79,7 +79,7 @@ When deployed with `compose.yaml`, Clear runs as three connected services on one
 ## Current Scope
 
 - Supported SIEM: Wazuh
-- Roadmap (planned in article): ELK, Splunk, IBM QRadar
+- Roadmap: ELK, Splunk, IBM QRadar
 
 ## License
 

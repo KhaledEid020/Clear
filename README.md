@@ -2,11 +2,6 @@
 
 Clear is an AI-driven detection engineering workflow focused on reducing noisy false-positive SIEM alerts, starting with Wazuh.
 
-This repository packages the Clear workflow as a full local stack with:
-- Backend API (`clear-api`) powered by Agno AgentOS
-- PostgreSQL + pgvector (`clear-db`) for runtime/session data
-- Frontend dashboard (`clear-frontend`) for configuration and workflow execution
-
 ## Overview
 
 SOC teams often spend weeks or months manually tuning noisy detection rules. Clear shortens that cycle by orchestrating specialized agents that investigate a rule, gather context, and propose safer tuning actions.
@@ -29,16 +24,6 @@ Reference article: https://ai.keid.workers.dev/posts/clear-ai-fine-tuning-agent
 - `detectionengineer_agent` (Execution): applies approved tuning actions with Wazuh-specific skill guidance
 
 Workflow ID: `wazuh-fine-tuning-pipeline`
-
-## Repository Layout
-
-- `app/main.py`: AgentOS application entrypoint
-- `agents/wazuh_pipeline.py`: multi-agent workflow definition
-- `mcp_servers/ossec_mcp_server.py`: OSSEC/Wazuh rule retrieval MCP server
-- `mcp_servers/wazuh_ssh_exec_mcp_server.py`: Wazuh manager SSH execution MCP server
-- `skills/wazuh-detection-engineering/SKILL.md`: detection-engineering domain skill
-- `frontend/`: web dashboard and backend bridge endpoints
-- `compose.yaml`: full stack orchestration
 
 ## Prerequisites
 
@@ -99,23 +84,6 @@ When deployed with `compose.yaml`, Clear runs as three connected services on one
 1. `clear-db` (PostgreSQL + pgvector): stores workflow state, sessions, and user runtime configuration.
 2. `clear-api` (AgentOS/FastAPI): hosts agent workflows and orchestrates MCP + skill-driven execution.
 3. `clear-frontend` (Node app): provides operator UI and feeds user-specific runtime settings to the backend.
-
-Execution pattern:
-- Operator chooses/configures workflow from frontend
-- Backend resolves user-scoped runtime settings from DB
-- Agents run sequence: hunting, enrichment, retrieval, reporting
-- Human approval gate is enforced before engineering actions
-- Detection engineer step executes approved changes via controlled tooling
-
-## Production Deployment Notes
-
-For production hardening, deploy with these controls:
-- Use a managed PostgreSQL instance and persistent volume strategy
-- Put frontend/API behind TLS reverse proxy (Nginx, Traefik, or cloud LB)
-- Restrict API and DB network exposure (private subnet/security groups)
-- Store API keys and SSH secrets in a secrets manager (not plaintext env files)
-- Enable centralized logs/metrics and workflow audit retention
-- Pin container image tags and apply CI vulnerability scanning
 
 ## Current Scope
 

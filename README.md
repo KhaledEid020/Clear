@@ -32,7 +32,6 @@ Workflow ID: `wazuh-fine-tuning-pipeline`
 ## Local runtime requirements
 - Docker Engine 24+ (or equivalent recent version)
 - Docker Compose v2 (`docker compose`)
-- Linux/macOS/WSL environment with network access to your Wazuh infrastructure
 
 ## External platform requirements
 - A running Wazuh deployment (manager + indexer/OpenSearch)
